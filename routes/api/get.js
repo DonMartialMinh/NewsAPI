@@ -3,13 +3,15 @@ const router = express.Router();
 
 const News = require("../../models/news");
 
-router.get("/filter", async (req, res) => {
+router.get("/filter/:pagenumber", async (req, res) => {
   try {
     const news = await News.find({
       category: {
         $eq: req.query.category,
       },
-    }).limit(10);
+    })
+      .limit(10)
+      .skip(10 * req.params.pagenumber);
     if (!news) throw Error("No Items");
     res.status(200).json(news);
   } catch (err) {
@@ -17,9 +19,11 @@ router.get("/filter", async (req, res) => {
   }
 });
 
-router.get("/all", async (req, res) => {
+router.get("/all/:pagenumber", async (req, res) => {
   try {
-    const news = await News.find().limit(10);
+    const news = await News.find()
+      .limit(10)
+      .skip(10 * req.params.pagenumber);
     if (!news) throw Error("No Items");
     res.status(200).json(news);
   } catch (err) {
