@@ -8,7 +8,7 @@ router.get('/filter', async (req, res) => {
         'category': {
             $eq: req.query.category
         }
-      });
+      }).limit(20);
         if (!news) throw Error('No Items'); 
         res.status (200).json(news) 
     }
@@ -19,7 +19,7 @@ router.get('/filter', async (req, res) => {
 )
 
 router.get('/all', async (req, res) => { 
-    try { const news = await News.find();
+    try { const news = await News.find().limit(20);
         if (!news) throw Error('No Items'); 
         res.status (200).json(news) }
         catch(err) { 
