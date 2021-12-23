@@ -9,6 +9,9 @@ function CategoryNormalize(category) {
     case "world":
       result = "Thế giới";
       break;
+    case "trending":
+      result = "Trending";
+      break;
     case "news":
       result = "Thời sự";
       break;
