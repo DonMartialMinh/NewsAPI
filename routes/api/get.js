@@ -4,40 +4,40 @@ const router = express.Router();
 const News = require("../../models/news");
 
 function CategoryNormalize(category) {
-  const result = new String(category);
+  var result = new String(category);
   switch (category) {
-    case "thegioi":
+    case "world":
       result = "Thế giới";
       break;
-    case "thoisu":
+    case "news":
       result = "Thời sự";
       break;
-    case "xahoi":
+    case "social":
       result = "Xã hội";
       break;
-    case "phapluat":
+    case "law":
       result = "Pháp luật";
       break;
-    case "kinhdoanh":
+    case "business":
       result = "Kinh doanh";
       break;
-    case "thethao":
+    case "sport":
       result = "Thể thao";
       break;
-    case "suckhoe":
+    case "health":
       result = "Sức khỏe";
       break;
-    case "giaitri":
+    case "entertainment":
       result = "Giải trí";
       break;
   }
   return result;
 }
-router.get("/:pagenumber/:category", async (req, res) => {
+router.get("/:pagenumber/filter", async (req, res) => {
   try {
     const news = await News.find({
       category: {
-        $eq: CategoryNormalize(req.params.category),
+        $eq: CategoryNormalize(req.query.category),
       },
     })
       .limit(10)
