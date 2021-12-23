@@ -3,7 +3,7 @@ const router = express.Router();
 
 const News = require("../../models/news");
 
-router.get("/filter/:pagenumber", async (req, res) => {
+router.get("/:pagenumber/filter", async (req, res) => {
   try {
     const news = await News.find({
       category: {
