@@ -30,6 +30,9 @@ function CategoryNormalize(category) {
     case "entertainment":
       result = "Giải trí";
       break;
+    case "peoplemayread":
+      result = "Bạn đọc";
+      break;
   }
   return result;
 }
